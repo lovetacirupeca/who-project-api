@@ -22,7 +22,7 @@ const contactSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
-    userId: {
+    ownerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },

@@ -39,19 +39,20 @@ module.exports.create = (req, res, next) => {
 
 module.exports.delete = (req, res, next) => {
     const id = req.params.id;
-    Contact.findByIdAndRemove({ _id: id, ownerId: req.user._id })
+    Contact.findOneAndRemove({ _id: id, ownerId: req.user._id})
         .then(contact => {
             if (contact) {
-                res.status(204).json()
+                res.status(204).json();
             } else {
-                next(new ApiError(`Contact not found`, 404));
+                next(new ApiError(error.message, 404));
             }
-        }).catch(error => next(error));
+        })
+        .catch(error => next(new ApiError(error.message, 500)));
 }
 
 module.exports.edit = (req, res, next) => {
     const id = req.params.id;
-    Contact.findByIdAndUpdate({ _id: id, ownerId: req.user._id }, { $set: req.body }, { new: true })
+    Contact.findOneAndUpdate({ _id: id, ownerId: req.user._id }, { $set: req.body }, { new: true })
         .then(contact => {
             if (contact) {
                 res.status(200).json(contact)

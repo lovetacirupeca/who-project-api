@@ -16,12 +16,11 @@ const storage = cloudinaryStorage({
     }
 });
 const parser = multer({ storage: storage });
-const secure = require('../middleware/secure.middleware');
 
 router.get('/', secureMiddleware.isAuthenticated, contactController.list);
 router.get('/:id', secureMiddleware.isAuthenticated, contactsMiddleware.checkValidId, contactController.get);
-router.post('/new', secureMiddleware.isAuthenticated, uploadConfig.single('image'), secureMiddleware.canEditContact, contactController.create);
-router.put('/edit/:id', secureMiddleware.isAuthenticated, uploadConfig.single('image'), secureMiddleware.canEditContact, contactsMiddleware.checkValidId, contactController.edit);
+router.post('/new', secureMiddleware.isAuthenticated, parser.single('contact-avatars'), contactController.create);
+router.put('/edit/:id', secureMiddleware.isAuthenticated, parser.single('contact-avatars'), contactsMiddleware.checkValidId, contactController.edit);
 router.delete('/delete/:id', secureMiddleware.isAuthenticated, contactsMiddleware.checkValidId, contactController.delete);
 
 module.exports = router;

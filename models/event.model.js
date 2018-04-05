@@ -9,7 +9,12 @@ const eventSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    contactArray: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Contact' }]
+    contacts: [
+        { 
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Contact' 
+        }
+    ]
 }, {
         timestamps: true,
         toJSON: {

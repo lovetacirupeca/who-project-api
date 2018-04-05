@@ -21,5 +21,27 @@ module.exports.create = (req, res, next) => {
                         }
                     });
             }
-        }).catch(error => next(new ApiError('User already registered', 500)));
+        })
+        .catch(error => next(new ApiError(error, 500)));
+}
+
+module.exports.edit = (req, res, next) => {
+    const user = req.user;
+    if (req.body.name) {
+        user.name = req.body.name;
+    }
+    if (req.body.password) {
+        user.password = req.body.password;
+    }
+    if (req.body.password) {
+        user.password = req.body.password;
+    }
+    if (req.body.imageUrl) {
+        user.imageUrl = req.body.imageUrl;
+    }
+    user.save()
+        .then(() => {
+            res.json(user);
+        })
+        .catch(error => next(new ApiError(error, 500)));
 }
