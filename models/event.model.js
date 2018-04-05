@@ -1,31 +1,15 @@
 const mongoose = require('mongoose');
-const contactSchema = new mongoose.Schema({
+const eventSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'The name is required']
     },
-    image: {
-        type: String,
-        default: '/images/contact.png'
-    },
-    notes: {
-        type: [String],
-        default: []
-    },
-    job: {
-        type: String
-    },
-    rate: {
-        type: Number
-    },
-    categories: {
-        type: [String],
-        default: []
-    },
-    userId: {
+    coordinates: [req.body.latitude, req.body.longitude],
+    ownerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    contactArray: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Contact' }]
 }, {
         timestamps: true,
         toJSON: {
@@ -38,5 +22,5 @@ const contactSchema = new mongoose.Schema({
         }
     });
 
-const Contact = mongoose.model('Contact', contactSchema);
-module.exports = Contact;
+const Event = mongoose.model('Event', eventSchema);
+module.exports = Event;
