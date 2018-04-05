@@ -29,7 +29,12 @@ const userSchema = new mongoose.Schema({
             ref: 'Contact'
         }
     ],
-    
+    events: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Event'
+        }
+    ]
 }, { 
   timestamps: true,
   toJSON: {

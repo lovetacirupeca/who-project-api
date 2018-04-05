@@ -6,6 +6,6 @@ module.exports.checkValidId = (req, res, next) => {
     if (mongoose.Types.ObjectId.isValid(id)) {
         next();
     } else {
-        next(new ApiError(`Invalid contact id: ${id}`));
+        next(new ApiError(`Invalid event id: ${id}`));
     }
 }
