@@ -25,7 +25,6 @@ module.exports.create = (req, res, next) => {
     event.ownerId = req.user._id;
     event.save()
         .then(() => {
-            console.log(event);
             res.status(201).json(event);
         })
         .catch(error => {
