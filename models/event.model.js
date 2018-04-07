@@ -4,7 +4,10 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: [true, 'The name is required']
     },
-    coordinates: [],
+    location: {
+        type: { type: String },
+        coordinates: [Number]
+    },
     ownerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
