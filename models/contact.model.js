@@ -6,7 +6,7 @@ const contactSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default: ''
+        default: '/images/contact.png'
     },
     notes: {
         type: [String],
@@ -15,12 +15,23 @@ const contactSchema = new mongoose.Schema({
     job: {
         type: String
     },
-    meet: {
-        type: String
-    },
     rate: {
         type: Number
-    }
+    },
+    categories: {
+        type: [String],
+        default: []
+    },
+    ownerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    events: [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event'
+        }
+    ]
 }, {
         timestamps: true,
         toJSON: {

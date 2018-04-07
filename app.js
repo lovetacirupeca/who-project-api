@@ -14,7 +14,9 @@ require('./configs/db.config');
 require('./configs/passport.config').setup(passport);
 
 const usersRoutes = require('./routes/users.routes');
-const sessionRoutes = require('./routes/session.routes')
+const sessionRoutes = require('./routes/session.routes');
+const contactRoutes = require('./routes/contact.routes');
+const eventRoutes = require('./routes/event.routes');
 
 const app = express();
 
@@ -22,8 +24,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(cors(corsConfig));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -50,9 +51,10 @@ app.use((req, res, next) => {
 });
 
 // routes
-
 app.use('/users', usersRoutes);
 app.use('/session', sessionRoutes);
+app.use('/contact', contactRoutes);
+app.use('/event', eventRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

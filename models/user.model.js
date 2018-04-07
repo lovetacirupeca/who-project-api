@@ -19,10 +19,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Name is required'],
     },
-    image: {
+    imageUrl: {
         type: String,
-        default: ''
-    }
+        default: '/images/user.png'
+    },
+    contacts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Contact'
+        }
+    ],
+    events: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Event'
+        }
+    ]
 }, { 
   timestamps: true,
   toJSON: {
