@@ -21,10 +21,11 @@ module.exports.get = (req, res, next) => {
 }
 
 module.exports.create = (req, res, next) => {
-    req.body.ownerId = req.user._id;
     const event = new Event(req.body);
+    event.ownerId = req.user._id;
     event.save()
         .then(() => {
+            console.log(event);
             res.status(201).json(event);
         })
         .catch(error => {
