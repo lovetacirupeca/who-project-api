@@ -15,10 +15,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'User needs a password']
     },
-    name: {
-        type: String,
-        required: [true, 'Name is required'],
-    },
     imageUrl: {
         type: String,
         default: '/images/user.png'
