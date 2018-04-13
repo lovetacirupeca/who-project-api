@@ -1,5 +1,6 @@
 const passport = require('passport');
 const ApiError = require('../models/api-error.model');
+const User = require('../models/user.model');
 
 module.exports.create = (req, res, next) => {
     const email = req.body.email;
@@ -9,6 +10,7 @@ module.exports.create = (req, res, next) => {
         next(new ApiError('Email and password are required', 400));
     } else {
         passport.authenticate('local-auth', (err, user, message) => {
+          
             if (err) {
                 next(err);
             } else if (!user) {
@@ -30,3 +32,10 @@ module.exports.destroy = (req, res, next) => {
     req.logout();
     req.status(200).json({ message: 'Success' });
 };
+
+module.exports.getUser = (req, res, next) => {
+    const id = req.params.id;
+    User.findById(id)
+        .then(user => res.json(user))
+        .catch(error => next(new ApiError(error, 500)))
+}

@@ -5,5 +5,6 @@ const sessionController = require('../controllers/session.controller');
 
 router.delete('/', secureMiddleware.isAuthenticated, sessionController.destroy);
 router.post('/', sessionController.create);
+router.get('/:id', sessionController.getUser);
 
 module.exports = router;
