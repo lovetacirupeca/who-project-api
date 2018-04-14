@@ -25,13 +25,7 @@ const contactSchema = new mongoose.Schema({
     ownerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    },
-    events: [
-        {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Event'
-        }
-    ]
+    }
 }, {
         timestamps: true,
         toJSON: {

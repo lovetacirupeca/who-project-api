@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     },
     imageUrl: {
         type: String,
-        default: 'http://res.cloudinary.com/lovetacirupeca/raw/upload/v1523618288/user-avatars/wi-user.png'
+        default: 'http://res.cloudinary.com/lovetacirupeca/raw/upload/v1523711993/user-avatars/wi-user.png'
     },
     contacts: [
         {
