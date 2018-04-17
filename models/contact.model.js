@@ -6,7 +6,7 @@ const contactSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default: '/images/contact.png'
+        default: 'http://res.cloudinary.com/lovetacirupeca/raw/upload/v1523989640/contact-avatars/wi-contact.png'
     },
     notes: {
         type: [String],

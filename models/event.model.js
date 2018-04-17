@@ -7,6 +7,10 @@ const eventSchema = new mongoose.Schema({
     location: [{
         type: Number,
     }],
+    comments: {
+        type: [String],
+        default: []
+    },
     ownerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
