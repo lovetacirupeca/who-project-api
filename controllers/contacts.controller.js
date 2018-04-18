@@ -21,6 +21,8 @@ module.exports.get = (req, res, next) => {
 }
 
 module.exports.create = (req, res, next) => {
+    console.log(req.file)
+    
     req.body.ownerId = req.user._id;
     const contact = new Contact(req.body);
     contact.save()

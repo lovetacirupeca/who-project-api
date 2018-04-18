@@ -15,10 +15,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'User needs a password']
     },
-    imageUrl: {
-        type: String,
-        default: 'http://res.cloudinary.com/lovetacirupeca/raw/upload/v1523711993/user-avatars/wi-user.png'
-    },
     contacts: [
         {
             type: Schema.Types.ObjectId,
