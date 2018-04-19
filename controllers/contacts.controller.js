@@ -10,7 +10,7 @@ module.exports.list = (req, res, next) => {
 
 module.exports.get = (req, res, next) => {
     const id = req.params.id;
-    Contact.find({ _id: id, ownerId: req.user._id })
+    Contact.findOne({ "_id": id, "ownerId": req.user._id })
         .then(contact => {
             if (contact) {
                 res.json(contact)
