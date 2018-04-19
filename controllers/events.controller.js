@@ -4,6 +4,7 @@ const ApiError = require('../models/api-error.model');
 
 module.exports.list = (req, res, next) => {
     Event.find({ ownerId: req.user._id })
+        .populate('contacts')
         .then(event => res.json(event))
         .catch(error => next(error));
 }
@@ -21,6 +22,7 @@ module.exports.get = (req, res, next) => {
 }
 
 module.exports.create = (req, res, next) => {
+    console.log(req.body)
     const event = new Event(req.body);
     event.ownerId = req.user._id;
     event.save()
