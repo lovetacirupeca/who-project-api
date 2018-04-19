@@ -12,6 +12,7 @@ module.exports.get = (req, res, next) => {
     const id = req.params.id;
     Contact.findOne({ "_id": id, "ownerId": req.user._id })
         .then(contact => {
+            console.log(contact)
             if (contact) {
                 res.json(contact)
             } else {
@@ -21,10 +22,9 @@ module.exports.get = (req, res, next) => {
 }
 
 module.exports.create = (req, res, next) => {
-    console.log(req.file)
-    
     req.body.ownerId = req.user._id;
-    const contact = new Contact(req.body);
+    const contactBody = req.file ? { ...req.body, image: req.file.url } : req.body;
+    const contact = new Contact(contactBody);
     contact.save()
         .then(() => {
             res.status(201).json(contact);

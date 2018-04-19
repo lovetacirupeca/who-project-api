@@ -9,8 +9,7 @@ const contactSchema = new mongoose.Schema({
         default: 'http://res.cloudinary.com/lovetacirupeca/raw/upload/v1523989640/contact-avatars/wi-contact.png'
     },
     notes: {
-        type: [String],
-        default: []
+        type: [String]
     },
     job: {
         type: String
@@ -19,8 +18,7 @@ const contactSchema = new mongoose.Schema({
         type: Number
     },
     categories: {
-        type: [String],
-        default: []
+        type: [String]
     },
     ownerId: {
         type: mongoose.Schema.Types.ObjectId,
